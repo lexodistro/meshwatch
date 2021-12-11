@@ -62,7 +62,38 @@ https://meshtastic.org/docs/software/python/python-installation
 
 ## MeshWatch
 
-![Install](https://github.com/datagod/meshtalk/blob/main/pics/MeshtalkInstall.jpg?raw=true "Install")
+![Install](https://github.com/datagod/meshwatch/blob/main/pics/MeshtalkInstall.jpg?raw=true "Install")
+
+RPI Install
+~~~
+cd ~
+sudo apt-get install git
+git clone https://github.com/datagod/meshwatch
+cd meshwatch
+python3 meshwatch.py -s "Boy I sure hope this works!"
+~~~
+MacOS Install
+~~~
+cd ~
+brew install git
+~~~
+Wait for git to install
+~~~
+git clone https://github.com/datagod/meshwatch
+~~~
+~~~
+cd meshwatch
+python3 meshwatch.py -s "Boy I sure hope this works!"
+~~~
+If an error message is thrown, you may need to list you device specific port.
+Find this by searching your /dev folder for the proper port.
+~~~
+ls /dev/cu.*
+~~~
+For the T-Beam you will use the cu.usb* ports
+~~~
+python3 meshwatch.py -s "Boy I sure hope this works!" -p /dev/cu.usbmodem*
+~~~
 
 ## GeoPy
 We use a function from the GeoPy module to calculate distance between nodes.
