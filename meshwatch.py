@@ -89,6 +89,7 @@ DEBUG = False
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument('-s', '--send',    type=str,   nargs='?', help="send a text message")
 parser.add_argument('-t', '--time',    type=int, nargs='?', help="seconds to listen before exiting",default = 36000)
+parser.add_argument('-p', '--port',    type=str,   nargs='?', help="set port of device")
 args = parser.parse_args()
 
 #This will now be the default behaviour
@@ -102,6 +103,13 @@ if(args.send):
   TheMessage = args.send
 else:
   SendMessage = False
+#Process needed for setting port of specific meshtastic device, some users need to do so when multiple devices are active.
+if(args.port):
+  SetPort = True
+  PortAddress = args.port
+else:
+  SetPort = False
+  PortAddress = ""
 
 #if(args.receive):
 #  ReceiveMessages = True
@@ -1478,7 +1486,7 @@ def main(stdscr):
     #By default will try to find a meshtastic device, otherwise provide a device path like /dev/ttyUSB0
     Window4.ScrollPrint("Finding Meshtastic device",2)
     
-    interface = meshtastic.SerialInterface()
+    interface = meshtastic.SerialInterface(PortAddress)
 
 
 
